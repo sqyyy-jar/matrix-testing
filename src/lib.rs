@@ -21,19 +21,13 @@ pub const USED_SCREEN_HEIGHT: i32 = PIXEL_HEIGHT * PWIDTH;
 
 pub const SPEED: i32 = 1 << PREC_BITS;
 
+#[derive(Default)]
 pub struct Dot {
     pub pos: Vec2,
     pub vel: Vec2,
 }
 
 impl Dot {
-    pub fn new(vel_x: i32, vel_y: i32) -> Self {
-        Self {
-            pos: Vec2::new(VWIDTH / 2, VWIDTH / 2),
-            vel: Vec2::new(vel_x, vel_y).resize(),
-        }
-    }
-
     pub fn draw(&self, frame: &mut [u8]) {
         let Vec2 { x, y } = self.pos.convert();
         for (i, pixel) in frame.chunks_exact_mut(4).enumerate() {

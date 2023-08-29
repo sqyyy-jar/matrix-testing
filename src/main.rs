@@ -27,7 +27,7 @@ fn main() -> Result<(), Error> {
         let surface_texture = SurfaceTexture::new(window_size.width, window_size.height, &window);
         Pixels::new(SCREEN_WIDTH as u32, SCREEN_HEIGHT as u32, surface_texture)?
     };
-    let mut dot = Dot::new(50, 100);
+    let mut dot = Dot::default();
     event_loop.run(move |event, _, control_flow| {
         if let Event::RedrawRequested(_) = event {
             dot.draw(pixels.frame_mut());

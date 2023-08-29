@@ -1,6 +1,6 @@
 use crate::{PIXEL_HEIGHT, PIXEL_WIDTH, PREC_BITS, SPEED};
 
-#[derive(Debug, Default)]
+#[derive(Clone, Debug, Default)]
 pub struct Vec2 {
     pub x: i32,
     pub y: i32,
@@ -35,6 +35,9 @@ impl Vec2 {
     /// Resize vector to [SPEED]
     pub fn resize(&self) -> Self {
         let len = ((self.x * self.x + self.y * self.y) as f64).sqrt() as i32;
+        if len == 0 {
+            return self.clone();
+        }
         let x = self.x * SPEED / len;
         let y = self.y * SPEED / len;
         Self { x, y }
